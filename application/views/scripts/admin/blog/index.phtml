@@ -1,0 +1,47 @@
+<h1 class="page-title"> Objave
+    <small> Menadžment objava</small>
+    <div class="btn-group pull-right">
+        <a href="<?php echo $this->resourceUrl()->action('create');?>" class="btn sbold green"> Dodaj novu &nbsp;
+            <i class="fa fa-plus"></i>
+        </a>
+    </div>
+</h1>
+
+<div class="blog-page blog-content-1">
+    <div class="row">
+        <?php foreach ($this->posts as $post): ?>
+        <div class="col-md-3">
+            <div class="blog-post-lg bordered blog-container">
+                <div class="blog-img-thumb">
+                    <a href="" class="btn btn-ucms blog-button btn-sm" type="button">
+                        <i class="icon-pencil"></i>
+                    </a>
+                    <a href="javascript:;">
+                        <img src="<?php echo $this->escape($post['featured_image']);?>">
+                    </a>
+                </div>
+                <div class="blog-post-content">
+                    <h2 class="blog-title blog-post-title">
+                        <a href="javascript:;"><?php echo $this->escape($post['title']);?></a>
+                    </h2>
+                    <p class="blog-post-desc"> <?php echo $this->escape($post['text']);?></p>
+                    <div class="blog-post-foot">
+                        <div class="blog-post-meta">
+                            <i class="icon-calendar font-cms-blue"></i>
+                            <a href="javascript:;">
+                                <?php echo $this->escape(date('M d, Y', strtotime($post['date_published'])));?>
+                             </a>
+                            <i class="icon-bubble font-cms-blue"></i>
+                            <a href="javascript:;">
+                                <?php echo $this->getHelper('Blog')->commentCount($post['id']); ?>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<?php echo $this->getHelper('HtmlLibraries')->library('blog'); ?>

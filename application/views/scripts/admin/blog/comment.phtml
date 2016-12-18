@@ -1,0 +1,178 @@
+<h1 class="page-title"> Komentari
+    <small> Menadžment komentara</small>
+    <div class="btn-group pull-right btn-click-cms">
+    </div>
+</h1>
+
+<div class="row">
+    <div class="col-lg-6 col-xs-12 col-sm-12"></div>
+    <div class="col-lg-6 col-xs-12 col-sm-12">
+        <div class="portlet light bordered">
+            <div class="portlet-title tabbable-line">
+                <div class="caption">
+                    <i class="icon-bubbles font-dark hide"></i>
+                    <span class="caption-subject font-dark bold uppercase">Komentari</span>
+                </div>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#portlet_comments_1" data-toggle="tab" aria-expanded="true"> Na čekanju </a>
+                    </li>
+                    <li class="">
+                        <a href="#portlet_comments_2" data-toggle="tab" aria-expanded="false"> Odobreni </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="portlet-body">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="portlet_comments_1">
+                        <!-- BEGIN: Comments -->
+                        <div class="mt-comments sliceit2">
+                            <?php foreach ($this->newcomments as $newComment): ?>
+                            <div class="mt-comment">
+                                <div class="mt-comment-img">
+                                    <img src="<?php echo $this->baseUrl('/skins/backend/cms/img/comment-avatar.png'); ?>">
+                                </div>
+                                <div class="mt-comment-body">
+                                    <div class="mt-comment-info">
+                                        <span class="mt-comment-author">
+                                            <?php echo $this->escape($newComment['name_surname']);?>
+                                        </span>
+                                        <span class="mt-comment-date">
+                                            <?php echo $this->escape(date('d M, h:i A', strtotime($newComment['date_created'])));?>
+                                        </span>
+                                    </div>
+                                    <div class="mt-comment-text">
+                                        <a class='inlinedit' data-type="text" id="comment"
+                                           data-pk="<?php echo $this->escape($newComment['id']) ;?>"
+                                           data-url="<?php echo $this->url(array(
+                                               'controller' => 'admin_blog',
+                                               'action' => 'comment'
+                                           ), 'default', true);?>">
+
+                                            <?php echo $this->escape($newComment['comment']);?>
+
+                                        </a>
+                                    </div>
+                                    <div class="mt-comment-details">
+                                        <span class="mt-comment-status mt-comment-status-pending">Na čekanju</span>
+                                        <ul class="mt-comment-actions">
+                                            <li>
+                                                <a href="#">Brza izmena</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Pročitaj</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Obriši</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 text-center">
+                                <a class="btn sbold green" id="loadMore2"> Učitaj još... &nbsp;
+                                    <i class="icon-arrow-down"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="portlet_comments_2">
+                        <!-- BEGIN: Comments -->
+                        <div class="mt-comments sliceit">
+                            <?php foreach ($this->approvedcomments as $approvedComment): ?>
+                            <div class="mt-comment">
+                                <div class="mt-comment-img">
+                                    <img src="<?php echo $this->baseUrl('/skins/backend/cms/img/comment-avatar.png'); ?>"> </div>
+                                <div class="mt-comment-body">
+                                    <div class="mt-comment-info">
+                                        <span class="mt-comment-author">
+                                            <?php echo $this->escape($approvedComment['name_surname']);?>
+                                        </span>
+                                        <span class="mt-comment-date">
+                                            <?php echo $this->escape(date('d M, h:i A', strtotime($approvedComment['date_created'])));?>
+                                        </span>
+                                    </div>
+                                    <div class="mt-comment-text">
+                                        <a class='inlinedit' data-type="text" id="comment"
+                                           data-pk="<?php echo $this->escape($approvedComment['id']) ;?>"
+                                           data-url="<?php echo $this->url(array(
+                                               'controller' => 'admin_blog',
+                                               'action' => 'comment'
+                                            ), 'default', true);?>">
+
+                                            <?php echo $this->escape($approvedComment['comment']);?>
+
+                                        </a>
+                                    </div>
+                                    <div class="mt-comment-details">
+                                        <span class="mt-comment-status mt-comment-status-pending">Odobreni</span>
+                                        <ul class="mt-comment-actions">
+                                            <li>
+                                                <a class="quickedit">Brza izmena</a>
+                                            </li>
+                                            <li>
+                                                <a >Pročitaj</a>
+                                            </li>
+                                            <li>
+                                                <a >Obriši</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 text-center">
+                                <a class="btn sbold green" id="loadMore"> Učitaj još... &nbsp;
+                                    <i class="icon-arrow-down"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php echo $this->getHelper('HtmlLibraries')->library('editable'); ?>
+
+<script>
+    <?php $this->inlineScript()->captureStart(); ?>
+
+    $(document).ready(function() {
+        $('.inlinedit').editable();
+    });
+
+    $(function () {
+        $(".sliceit > div").slice(2, -1).hide();
+        $("#loadMore").on('click', function (e) {
+            e.preventDefault();
+            $(".sliceit > div:hidden").slice(0, 1).slideDown();
+            if ($(".sliceit > div:hidden").length == 0) {
+                $("#loadMore").fadeOut('slow');
+            }
+        });
+    });
+
+    $(function () {
+        $(".sliceit2 > div").slice(2, -1).hide();
+        $("#loadMore2").on('click', function (e) {
+            e.preventDefault();
+            $(".sliceit2 > div:hidden").slice(0, 1).slideDown();
+            if ($(".sliceit2 > div:hidden").length == 0) {
+                $("#loadMore2").fadeOut('slow');
+            }
+        });
+    });
+
+    <?php $this->inlineScript()->captureEnd(); ?>
+</script>

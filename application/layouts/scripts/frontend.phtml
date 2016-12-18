@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <?php
+    echo $this->headTitle();
+    echo $this->headScript();
+    echo $this->headLink();
+    echo $this->headMeta();
+    ?>
+	
+</head>
+<body>
+    
+    <?php echo $this->layout()->content; ?>		
+    
+    
+    <?php echo $this->inlineScript(); ?>
+</body>
+</html>

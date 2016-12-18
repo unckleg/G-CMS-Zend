@@ -1,0 +1,71 @@
+<h1 class="page-title"> Popunjavanje jezika za stranicu
+    <div class="btn-group pull-right">
+        <a href="<?php echo $this->resourceUrl()->index('index');?>"  class="btn sbold green">
+            <i class="fa fa-arrow-left"></i>&nbsp;
+            Nazad
+        </a>
+    </div>
+</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light portlet-fit portlet-form bordered">
+            <div class="portlet-title nopadding">
+                <div class="portlet light portlet-fit bordered">
+                    <div id="form-wizard" class="block form-wizard clearfix">
+                        <ul class="form-wizard-levels">
+                            <?php foreach ($this->languages as $language):?>
+                                <?php if ($language['id'] === $this->currentlang->id):?>
+                                    <li class="active">
+                                        <a>
+                                            <?php echo $language['name']; ?>
+                                        </a>
+                                    </li>
+                                <?php else: ?>
+                                    <li>
+                                        <a href="<?php echo $this->url(array(
+                                            'controller' => 'admin_page',
+                                            'action' => 'edit',
+                                            'page' => $this->currentpage['id'],
+                                            'language' => $language['id']),
+                                            'default', true) ;?>">
+                                            <?php echo $language['name']; ?>
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <?php echo $this->form; ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php $this->inlineScript()->appendFile($this->baseUrl('/skins/backend/cms/js/ckeditor/ckeditor.js'));?>
+
+<script>
+    <?php $this->inlineScript()->captureStart();?>
+    CKEDITOR.replace( 'editor', {
+        height: 300,
+        allowedContent: true,
+        toolbar: [
+            { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'Preview', 'Print', '-',] },
+            { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo' ] },
+            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', ] },
+            { name: 'links', items: [ 'Link', 'Unlink' ] },
+            { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule'] },
+            '/',
+            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', '-', 'RemoveFormat' ] },
+            { name: 'styles', items: [ 'Styles', 'Format' ] },
+            { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
+            { name: 'others', items: [ '-' ] },
+            { name: 'about', items: [ 'About' ] }
+        ]
+    });
+    CKEDITOR.config.skin = 'office2013';
+    <?php $this->inlineScript()->captureEnd();?>
+</script>

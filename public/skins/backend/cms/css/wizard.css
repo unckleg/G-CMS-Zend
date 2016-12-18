@@ -1,0 +1,115 @@
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+/* Form wizard */
+#form-wizard {
+    margin-bottom: -10px !important;
+}
+.form-wizard .form-wizard-levels {
+  position: relative;
+  float: left;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  margin-bottom: 10px;
+  background: #3d3d3d;
+  -moz-border-radius: 5px 5px 0px 0px;
+  -webkit-border-radius: 5px 5px 0px 0px;
+  border-radius: 5px 5px 0px 0px;
+}
+.form-wizard .form-wizard-levels li {
+  float: left;
+  position: relative;
+}
+.form-wizard .form-wizard-levels li a {
+  display: block;
+  float: left;
+  color: #FFF;
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 10px 10px 10px 20px;
+  height: 50px;
+  margin-right: 25px;
+  position: relative;
+}
+.form-wizard .form-wizard-levels li.active a:after {
+  left: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-left-color: #8775a7;
+  border-width: 25px;
+  margin-top: -25px;
+}
+.form-wizard .form-wizard-levels li.active a {
+  background: #8775a7;
+}
+.form-wizard .form-wizard-levels li a span {
+  display: block;
+  float: left;
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  margin-top: 5px;
+  font-size: 11px;
+  background: #465e74;
+  border: 1px solid #314151;
+  line-height: 18px;
+}
+.form-wizard .form-wizard-levels li.active a span {
+  background: #5bb3e7;
+  border-color: #2299de;
+}
+.form-wizard .form-wizard-levels li:first-child a {
+  -moz-border-radius: 5px 0px 0px;
+  -webkit-border-radius: 5px 0px 0px;
+  border-radius: 5px 0px 0px;
+}
+.finish {
+  float: right;
+}
+/* eof form wizard */
+
+@media only screen and (max-width: 1024px) {
+  .block .user {
+    padding: 35px 10px;
+  }
+  .container.container-fixed {
+    width: auto;
+    max-width: auto !important;
+  }
+  .block .block-content {
+    width: 100%;
+    overflow: hidden;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .form-wizard .form-wizard-levels li a {
+    font-size: 0px;
+    color: transparent;
+    padding: 10px 0px 10px 5px;
+  }
+  .form-wizard .form-wizard-levels li a span {
+    font-size: 11px;
+    color: #FFF;
+    margin-right: 0px;
+  }
+}
+
+.panel { 
+    border: 0px !important;
+    border-radius: 0px !important;
+}

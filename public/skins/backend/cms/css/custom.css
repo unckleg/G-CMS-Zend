@@ -1,0 +1,55 @@
+.cen  tr th {
+    text-align: center;
+}
+.cke_bottom {
+    background: #3d3d3d !important;
+}
+table.dataTable.no-footer {
+    border-bottom: 0px solid #111 !important;
+}
+
+.label .label-sm .label-info {
+    background-color: #8775a7 !important;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background-color: #666666 !important;
+    border-color: #666666 !important;
+}
+.blog-button {
+    padding: 5px 10px;
+    font-size: 16px;
+    position: relative;
+    line-height: 1.5;
+    z-index: 99;
+    float: right;
+}
+.tabbable-line > .nav-tabs > li.active {
+    border-bottom: 4px solid #8775a7;
+}
+.tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
+    border-bottom: 4px solid rgba(135, 117, 167, 0.82);
+}
+
+.mt-comment-img > img {
+    width: 100% !important;
+}
+.mt-comments .mt-comment .mt-comment-body {
+    position: static;
+}
+
+.editable-click, a.editable-click, a.editable-click:hover {
+    text-decoration: none;
+    border-bottom: 0px !important;
+    color: #999999 !important;
+}
+.btn.blue:not(.btn-outline) {
+    color: #FFFFFF;
+    background-color: #8775a7 !important;
+    border-color: #8775a7 !important;;
+}
+
+.btn.blue:not(.btn-outline):hover {
+    color: #FFFFFF;
+    background-color: #9581b9 !important;
+    border-color: #9581b9 !important;
+}

@@ -1,0 +1,93 @@
+<?php $option = $this->element->getDecorator('ViewScript')->getOptions(); ?>
+<form class="layout"
+      method="<?php echo $this->element->getMethod();?>" 
+      action="<?php echo $this->element->getAction();?>"
+      enctype="<?php echo $this->element->getEnctype();?>">
+    <input type="hidden" name="task" value="<?php echo $option['task']; ?>">
+    <div class="form-body">
+
+        <div class="form-group">
+            <label class="control-label">Page title</label>
+            <?php echo $this->element->title;?>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Page Content</label>
+                <?php echo $this->element->text;?>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Page layout</label>
+            <div class="col-lg-12">
+                <div class="col-md-12 align-layout">
+                    <?php for ($i = 1; $i < 7; $i++):?>
+                        <label class="radio-inline">
+                            <input type="radio" name="page_layout" id="layout<?php echo $i; ?>" value="<?php echo $i; ?>"
+                            <?php if (isset($option['layout']) && $option['layout'] == $i):?> checked="" <?php endif;?>>
+                            <i></i>
+                            <span></span>
+                        </label>
+                    <?php endfor; ?>
+                </div>
+            </div>
+        </div>
+
+        <label class="control-label">Page meta</label>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-lg-4">
+                        <label class="control-label">SEO Title</label>
+                        <?php echo $this->element->seo_title;?>
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="control-label">SEO Description</label>
+                        <?php echo $this->element->seo_description;?>
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="control-label">SEO Keywords</label>
+                        <?php echo $this->element->seo_keywords;?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <label class="control-label">Page photo</label>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="input-group input-large">
+                                <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                                    <i class="fa fa-file fileinput-exists"></i>&nbsp;
+                                    <span class="fileinput-filename"> </span>
+                                </div>
+                                <span class="input-group-addon btn default btn-file">
+                                <span class="fileinput-new"> Select file </span>
+                                <span class="fileinput-exists"> Change </span>
+                                <input type="file" name="page_photo">
+                                </span>
+                                <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-actions">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-cms">Submit</button>
+                <a href="<?php echo $this->url(array('controller' => 'admin_page', 'action' => 'index'),'default', true);?>" class="btn btn-default">Cancel</a>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+    </div>
+</form>
+
+<?php echo $this->getHelper('HtmlLibraries')->library('fileinput'); ?>
