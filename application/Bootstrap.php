@@ -29,7 +29,18 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     protected function _initDatabases() {
         $this->bootstrap('db');
     }
-    
+
+    public function _initCache() {
+        $cache = Zend_Cache::factory(
+            'Core', 'File', array(
+                'lifetime' => 3600 * 24 * 7, /* 7 days */
+                'automatic_serialization' => true
+            ), array('cache_dir' => APPLICATION_PATH . '/cache')
+        );
+
+        Zend_Registry::set('Cache', $cache);
+    }
+
     protected function getThemeByControllerName() {
         $router = new Zend_Controller_Router_Rewrite();
         $request = new Zend_Controller_Request_Http();

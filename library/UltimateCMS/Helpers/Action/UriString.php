@@ -23,7 +23,7 @@ class UriString
             "d" => "đ|Đ",
         );
         while (list($key,$value) = each($pattern)) {
-            $string = ereg_replace($value, $key, $string);
+            $string = preg_replace($value, $key, $string);
         }
         if ($allowANSIOnly) {
             $string = strtolower($string);

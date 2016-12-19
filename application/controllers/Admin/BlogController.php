@@ -244,8 +244,17 @@ class Admin_BlogController extends UltimateCMS_Controller_Abstract
            'order' => array('date_created' => ORM::COLUMN_ASC)
         ));
 
+        $cache = Zend_Registry::get('Cache');
+        $cacheKey = 'approvedComments';
+
+        if (empty($cacheKey) || ($approvedComments = $cache->load($cacheKey)) == false) {
+            $cache->save($approvedComments, $cacheKey);
+        }
+
+        $approvedCommentsCached = $cache->load($cacheKey);
+
         $this->view->newcomments = $newComments;
-        $this->view->approvedcomments = $approvedComments;
+        $this->view->approvedcomments = $approvedCommentsCached;
     }
 
     public function createAction()
