@@ -20,8 +20,11 @@ class Model_Admin_Blog_BlogCategory extends Zend_Db_Table_Abstract
      */
     public function getAll() {
         $select = $this->select();
-        $categorys = $this->fetchAll($select);
-        return $categorys;
+        $select->where('status = ?', self::STATUS_VISIBLE)
+               ->where('is_deleted = ?', self::IS_ACTIVE);
+
+        $categories = $this->fetchAll($select);
+        return $categories;
     }
 
     /**

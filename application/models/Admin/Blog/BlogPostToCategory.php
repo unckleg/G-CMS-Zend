@@ -5,7 +5,7 @@ use UltimateCMS_Model_Language as Language;
 class Model_Admin_Blog_BlogPostToCategory extends Zend_Db_Table_Abstract
 {
     // table name
-    protected $_name = 'cms_blog_postToCategory_to_category';
+    protected $_name = 'cms_blog_post_to_category';
 
     // soft delete constants read about it on link bellow
     // http://www.pcmag.com/encyclopedia/term/57355/soft-delete
@@ -16,13 +16,13 @@ class Model_Admin_Blog_BlogPostToCategory extends Zend_Db_Table_Abstract
     const STATUS_HIDDEN = 0;
 
     /**
-     * Return array-object of all postToCategorys from database
+     * Return array-object of all postToCategories from database
      * @return Array-Object
      */
     public function getAll() {
         $select = $this->select();
-        $postToCategorys = $this->fetchAll($select);
-        return $postToCategorys;
+        $postToCategories = $this->fetchAll($select);
+        return $postToCategories;
     }
 
     /**

@@ -1,0 +1,130 @@
+<?php $option = $this->element->getDecorator('ViewScript')->getOptions(); ?>
+<form class="layout"
+      method="<?php echo $this->element->getMethod();?>"
+      action="<?php echo $this->element->getAction();?>"
+      enctype="<?php echo $this->element->getEnctype();?>"
+      id="form">
+        <input type="hidden" name="task" value="<?php echo $option['task']; ?>">
+        <div class="col-md-9">
+            <div class="portlet light portlet-fit portlet-form bordered">
+                <div class="portlet-title nopadding">
+                    <div class="portlet light portlet-fit bordered">
+                        <div id="form-wizard" class="block form-wizard clearfix">
+                            <ul class="form-wizard-levels">
+                                <li class="active">
+                                    <a>
+                                        Blog forma
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="form-body">
+
+                        <div class="form-group">
+                            <label>Naslov objave</label>
+                            <div class="">
+                                <?php echo $this->element->title; ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Tekst objave</label>
+                            <?php echo $this->element->text; ?>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-cms">Objavi</button>
+                                <a href="<?php echo $this->url(array('controller' => 'admin_page', 'action' => 'index'),'default', true);?>" class="btn btn-default">Otkaži</a>
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+        <div class="portlet light portlet-fit portlet-form bordered">
+            <div class="portlet-title nopadding">
+                <div class="portlet light portlet-fit bordered">
+                    <div id="form-wizard" class="block form-wizard clearfix">
+                        <ul class="form-wizard-levels">
+                            <li>
+                                <a>
+                                    Opšta podešavanja
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="form-body">
+
+                    <div class="form-group">
+                        <label>Status objave</label>
+                        <?php echo $this->element->status; ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Datum objavljivanja</label>
+                        <div class="input-group">
+                            <?php echo $this->element->date_published; ?>
+                            <span class="input-group-btn">
+                                    <button class="btn default date-set" type="button">
+                                        <i class="fa fa-calendar"></i>
+                                    </button>
+                                </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="multiple" class="control-label">Kategorije</label>
+                        <?php echo $this->element->categories; ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Komentari</label>
+                        <div>
+                            <?php echo $this->element->comments_enabled; ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Oznake</label>
+                        <div>
+                            <?php echo $this->element->tags; ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group last">
+                        <label>Fotografija objave</label>
+                        <div>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
+                                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                <div>
+                                        <span class="btn default btn-file">
+                                        <span class="fileinput-new"> Izaberi </span>
+                                        <span class="fileinput-exists"> Izmeni </span>
+                                        <input type="file" name="featured_image"> </span>
+                                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Obriši </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

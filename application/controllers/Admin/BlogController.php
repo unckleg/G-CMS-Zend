@@ -3,6 +3,7 @@
 // Model classes
 use UltimateCMS_Model_ORM as ORM,
     Zend_Controller_Request_Http as Request,
+    UltimateCMS_Collections_Image_ImageResize as ImageResize,
     Model_Admin_Blog_BlogAuthor as BlogAuthor,
     Model_Admin_Blog_BlogCategory as BlogCategory,
     Model_Admin_Blog_BlogPostToCategory as BlogPostToCategory,
@@ -47,7 +48,11 @@ class Admin_BlogController extends UltimateCMS_Controller_Abstract
     public function indexAction(BlogPost $modelBlogPost)
     {
         // All posts fetching
-        $allPosts = ORM::Mapper_SearchAll($modelBlogPost);
+        $allPosts = ORM::Mapper_Search($modelBlogPost, array(
+            'orders' => array(
+                'date_published' => ORM::COLUMN_DESC
+            )
+        ));
 
         $this->view->posts = $allPosts;
     }
@@ -267,13 +272,73 @@ class Admin_BlogController extends UltimateCMS_Controller_Abstract
      * @param Model_Admin_Blog_BlogCategory $modelBlogCategory
      * @param Model_Admin_Blog_BlogTag $modelBlogTag
      * @param Model_Admin_Blog_BlogAuthor $modelBlogAuthor
-     * @param Model_Admin_Blog_BlogPostToCategory $modelBlogPostToCategroy
+     * @param Model_Admin_Blog_BlogPostToCategory $modelBlogPostToCategory
      * @param Zend_Controller_Request_Http $request
      */
-    public function createAction(FormPost $form, BlogPost $modelBlogPost, BlogCategory $modelBlogCategory,
-                                                 BlogTag $modelBlogTag,   BlogAuthor $modelBlogAuthor,
-                                                 BlogPostToCategory $modelBlogPostToCategroy,
+    public function createAction(FormPost $form, BlogPost $modelBlogPost, BlogTag $modelBlogTag,
+                                                 BlogPostToCategory $modelBlogPostToCategory,
                                                  Request $request)
+    {
+
+        if ($request->isPost() && $request->getPost('task') === 'create') {
+
+            try {
+
+                //check form is valid
+                if (!$form->isValid($request->getPost())) {
+                    var_dump(array(
+                        'Nevalidni podaci prosledjeni za formu', nl2br(null),
+                        $form->getMessages()
+                    ));
+                }
+
+                // get form data
+                $formData = $form->getValues();
+
+                if ($form->featured_image->isUploaded()) {
+                    $form->featured_image->receive();
+                    $fileExtension =  pathinfo($form->featured_image->getFileName(), PATHINFO_EXTENSION);
+                    $image = '/uploads/posts/' .basename($form->featured_image->getFileName());
+
+                    $resizeImage = new ImageResize(APP_PUBLIC . $image);
+                    $resizeImage->resizeTo($this->_widhtXL, $this->_heightXL, 'exact');
+                    $resizeImage->saveImage(APP_PUBLIC . substr($image, 0, -(strlen($fileExtension)+1))."-xl.".$fileExtension);
+
+                    $resizeImage = new ImageResize(APP_PUBLIC . $image);
+                    $resizeImage->resizeTo($this->_widhtL, $this->_heightL, 'exact');
+                    $resizeImage->saveImage(APP_PUBLIC . substr($image, 0, -(strlen($fileExtension)+1))."-l.".$fileExtension);
+
+                    $resizeImage = new ImageResize(APP_PUBLIC . $image);
+                    $resizeImage->resizeTo($this->_widhtS, $this->_heightS, 'exact');
+                    $resizeImage->saveImage(APP_PUBLIC . substr($image, 0, -(strlen($fileExtension)+1))."-s.".$fileExtension);
+
+                    $formData['featured_image'] = $image;
+                }
+
+                // inserting data to tables
+                $modelBlogPost->createPostCategoryTagData($formData, $modelBlogPostToCategory, $modelBlogTag);
+
+                // redirect after successfull insert
+                $this->_redirector->setExit(true)
+                    ->goToRoute(array(
+                        'controller' => 'admin_blog',
+                        'action' => 'index',
+                     ), 'default', true);
+
+                // set sticky message
+                $this->_flashMessenger->addMessage('Task is successfull', 'success');
+
+            } catch (Exception $ex) {
+                $this->_systemMessages['errors'][] = $ex->getMessage();
+            }
+        }
+
+        $this->view->form = $form;
+    }
+
+    public function editAction(FormPost $form, BlogPost $modelBlogPost,
+                                               BlogTag $modelBlogTag, BlogPostToCategory $modelBlogPostToCategory,
+                                               BlogCategory $modelBlogCategory, Request $request)
     {
 
     }

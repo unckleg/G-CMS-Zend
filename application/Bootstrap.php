@@ -35,7 +35,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             'Core', 'File', array(
                 'lifetime' => 3600 * 24 * 7, /* 7 days */
                 'automatic_serialization' => true
-            ), array('cache_dir' => APPLICATION_PATH . '/cache')
+            ), array('cache_dir' => APPLICATION_PATH . '/data/cache')
         );
 
         Zend_Registry::set('Cache', $cache);

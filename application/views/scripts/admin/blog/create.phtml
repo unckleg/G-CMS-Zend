@@ -8,143 +8,7 @@
 </h1>
 
 <div class="row">
-    <form class="" method="GET" action="">
-        <div class="col-md-9">
-            <div class="portlet light portlet-fit portlet-form bordered">
-                <div class="portlet-title nopadding">
-                    <div class="portlet light portlet-fit bordered">
-                        <div id="form-wizard" class="block form-wizard clearfix">
-                            <ul class="form-wizard-levels">
-                                <li class="active">
-                                    <a>
-                                        Blog forma
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="portlet-body">
-                    <input type="hidden" name="task" value="task">
-                    <div class="form-body">
-
-                        <div class="form-group">
-                            <label>Naslov objave</label>
-                            <div class="">
-                                <input type="text" class="form-control input-lg" placeholder="Unesite naslov za ovu objavu">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label">Tekst objave</label>
-                            <input type="text" class="form-control" id = "editor">
-                        </div>
-
-                    </div>
-
-                    <div class="form-actions">
-                        <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-6">
-                                <button type="submit" class="btn btn-cms">Objavi</button>
-                                <a href="<?php echo $this->url(array('controller' => 'admin_page', 'action' => 'index'),'default', true);?>" class="btn btn-default">Otkaži</a>
-                            </div>
-                            <div class="col-md-6"></div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="portlet light portlet-fit portlet-form bordered">
-                <div class="portlet-title nopadding">
-                    <div class="portlet light portlet-fit bordered">
-                        <div id="form-wizard" class="block form-wizard clearfix">
-                            <ul class="form-wizard-levels" style="height: 50px;"></ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="portlet-body">
-                    <div class="form-body">
-
-                        <div class="form-group">
-                            <label>Status objave</label>
-                            <select class="form-control">
-                                <option>Objavi</option>
-                                <option>Na čekanju</option>
-                                <option>Na odobrenje</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Datum objavljivanja</label>
-                            <div class="input-group">
-                                <input type="text" size="16" readonly class="form-control mypicker">
-                                <span class="input-group-btn">
-                                    <button class="btn default date-set" type="button">
-                                        <i class="fa fa-calendar"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="multiple" class="control-label">Kategorije</label>
-                            <select id="multiple" class="form-control select2-multiple" multiple>
-                                <optgroup label="Eastern Time Zone">
-                                    <option value="CT">Connecticut</option>
-                                    <option value="DE">Delaware</option>
-                                    <option value="FL">Florida</option>
-                                    <option value="GA">Georgia</option>
-                                    <option value="IN">Indiana</option>
-                                    <option value="ME">Maine</option>
-                                    <option value="MD">Maryland</option>
-                                    <option value="MA">Massachusetts</option>
-                                    <option value="MI">Michigan</option>
-                                    <option value="NH">New Hampshire</option>
-                                    <option value="NJ">New Jersey</option>
-                                    <option value="NY">New York</option>
-                                    <option value="NC">North Carolina</option>
-                                    <option value="OH">Ohio</option>
-                                    <option value="PA">Pennsylvania</option>
-                                    <option value="RI">Rhode Island</option>
-                                    <option value="SC">South Carolina</option>
-                                    <option value="VT">Vermont</option>
-                                    <option value="VA">Virginia</option>
-                                    <option value="WV">West Virginia</option>
-                                </optgroup>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Oznake</label>
-                            <div>
-                                <input type="text" class="form-control input-large"  data-role="tagsinput"  style="width: 100%;">
-                            </div>
-                        </div>
-
-                        <div class="form-group ">
-                            <label>Fotografija objave</label>
-                            <div>
-                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 100%;"> </div>
-                                    <div>
-                                        <span class="btn red btn-outline btn-file">
-                                        <span class="fileinput-new"> Select image </span>
-                                        <span class="fileinput-exists"> Change </span>
-                                        <input type="file" name="..."> </span>
-                                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
+    <?php echo $this->form; ?>
 </div>
 
 <?php
@@ -158,7 +22,7 @@
 <script>
     <?php $this->inlineScript()->captureStart();?>
     CKEDITOR.replace( 'editor', {
-        height: 300,
+        height: 310,
         allowedContent: true,
         toolbar: [
             { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'Preview', 'Print', '-',] },
@@ -180,15 +44,6 @@
         isRTL: false,
         format: 'dd.mm.yyyy hh:ii',
         autoclose: true,
-        days: ["Nedelja","Ponedeljak", "Utorak", "Sreda", "Četvrtak", "Petak", "Subota", "Nedelja"],
-        daysShort: ["Ned", "Pon", "Uto", "Sre", "Čet", "Pet", "Sub", "Ned"],
-        daysMin: ["N", "Po", "U", "Sr", "Č", "Pe", "Su", "N"],
-        months: ["Januar", "Februar", "Mart", "April", "Maj", "Jun", "Jul", "Avgust", "Septembar", "Oktobar", "Novembar", "Decembar"],
-        monthsShort: ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Avg", "Sep", "Okt", "Nov", "Dec"],
-        today: "Danas",
-        suffix: [],
-        meridiem: []
     });
-
     <?php $this->inlineScript()->captureEnd();?>
 </script>

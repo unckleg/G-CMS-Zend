@@ -22,9 +22,19 @@
                 </div>
                 <div class="blog-post-content">
                     <h2 class="blog-title blog-post-title">
-                        <a href="javascript:;"><?php echo $this->escape($post['title']);?></a>
+                        <a title="<?php echo $this->escape($post['title']); ?>">
+                            <?php echo
+                                $this->escape(mb_strlen($post['title']) > 16 ?
+                                    mb_substr($post['title'], 0,  16) . "..." : $post['title']);
+                            ?>
+                        </a>
                     </h2>
-                    <p class="blog-post-desc"> <?php echo $this->escape($post['text']);?></p>
+                    <p class="blog-post-desc">
+                        <?php echo
+                            $this->escape(mb_strlen(trim($post['text'])) > 100 ?
+                                mb_substr((strip_tags($post['text'])), 0, 100) . "..." : strip_tags($post['text']));
+                        ;?>
+                    </p>
                     <div class="blog-post-foot">
                         <div class="blog-post-meta">
                             <i class="icon-calendar font-cms-blue"></i>
