@@ -40,7 +40,7 @@
     </div>
 </div>
 
-<?php $this->inlineScript()->appendFile($this->baseUrl('/skins/backend/cms/js/ckeditor/ckeditor.js'));?>
+<?php echo $this->getHelper('HtmlLibraries')->library('ckeditor'); ?>
 
 <script>
     <?php $this->inlineScript()->captureStart();?>

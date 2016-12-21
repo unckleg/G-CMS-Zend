@@ -30,9 +30,9 @@ abstract class UltimateCMS_Controller_Abstract extends Zend_Controller_Action
      * @var array
      */
     protected $_basicTypes = array(
-        'int', 'integer', 'bool', 'boolean',
-        'string', 'array', 'object',
-        'double', 'float'
+        'int',     'integer', 'bool',
+        'boolean', 'string',  'array',
+        'object',  'double',  'float'
     );
 
     /**

@@ -72,6 +72,24 @@ class HtmlLibraries extends Zend_View_Helper_Abstract
             'editable' => array(
                 '/skins/backend/global/plugins/bootstrap-editable/bootstrap-editable/css/bootstrap-editable.css',
                 '/skins/backend/global/plugins/bootstrap-editable/bootstrap-editable/js/bootstrap-editable.js',
+            ),
+            'ckeditor' => array(
+                '/skins/backend/cms/js/ckeditor/ckeditor.js'
+            ),
+            'datetimepicker' => array(
+                '/skins/backend/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css',
+                '/skins/backend/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js',
+            ),
+            'tagsinput' => array(
+                '/skins/backend/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css',
+                '/skins/backend/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css',
+                '/skins/backend/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js',
+            ),
+            'select2' => array(
+                '/skins/backend/global/plugins/select2/css/select2.min.css',
+                '/skins/backend/global/plugins/select2/css/select2-bootstrap.min.css',
+                '/skins/backend/global/plugins/select2/js/select2.full.min.js',
+                '/skins/backend/pages/scripts/components-select2.min.js',
             )
         );
 

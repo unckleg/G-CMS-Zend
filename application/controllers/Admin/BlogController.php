@@ -3,14 +3,17 @@
 // Model classes
 use UltimateCMS_Model_ORM as ORM,
     Zend_Controller_Request_Http as Request,
+    Model_Admin_Blog_BlogAuthor as BlogAuthor,
     Model_Admin_Blog_BlogCategory as BlogCategory,
+    Model_Admin_Blog_BlogPostToCategory as BlogPostToCategory,
     Model_Admin_Blog_BlogPost as BlogPost,
     Model_Admin_Blog_BlogTag as BlogTag,
     Model_Admin_Blog_BlogComment as BlogComment;
 
 // Form classes
 use Form_Admin_Blog_Category as FormCategory,
-    Form_Admin_Blog_Tag as FormTag;
+    Form_Admin_Blog_Tag as FormTag,
+    Form_Admin_Blog_Post as FormPost;
 
 class Admin_BlogController extends UltimateCMS_Controller_Abstract
 {
@@ -56,7 +59,8 @@ class Admin_BlogController extends UltimateCMS_Controller_Abstract
      * @param Zend_Controller_Request_Http $request
      */
     public function categoryAction($categoryId, BlogCategory $modelBlogCategory,
-                                   FormCategory $form, Request $request )
+                                                FormCategory $form,
+                                                Request $request )
     {
         // All categories fetching
         $allCategories = ORM::Mapper_SearchAll($modelBlogCategory);
@@ -136,9 +140,9 @@ class Admin_BlogController extends UltimateCMS_Controller_Abstract
      * @param Form_Admin_Blog_Tag $form
      * @param Zend_Controller_Request_Http $request
      */
-    public function tagAction($tagId,
-                              BlogTag $modelBlogTag, FormTag $form,
-                              Request $request)
+    public function tagAction($tagId, BlogTag $modelBlogTag,
+                                      FormTag $form,
+                                      Request $request)
     {
         // All tags fetching
         $allTags = ORM::Mapper_SearchAll($modelBlogTag);
@@ -257,7 +261,19 @@ class Admin_BlogController extends UltimateCMS_Controller_Abstract
         $this->view->approvedcomments = $approvedCommentsCached;
     }
 
-    public function createAction()
+    /**
+     * @param Form_Admin_Blog_Post $form
+     * @param Model_Admin_Blog_BlogPost $modelBlogPost
+     * @param Model_Admin_Blog_BlogCategory $modelBlogCategory
+     * @param Model_Admin_Blog_BlogTag $modelBlogTag
+     * @param Model_Admin_Blog_BlogAuthor $modelBlogAuthor
+     * @param Model_Admin_Blog_BlogPostToCategory $modelBlogPostToCategroy
+     * @param Zend_Controller_Request_Http $request
+     */
+    public function createAction(FormPost $form, BlogPost $modelBlogPost, BlogCategory $modelBlogCategory,
+                                                 BlogTag $modelBlogTag,   BlogAuthor $modelBlogAuthor,
+                                                 BlogPostToCategory $modelBlogPostToCategroy,
+                                                 Request $request)
     {
 
     }

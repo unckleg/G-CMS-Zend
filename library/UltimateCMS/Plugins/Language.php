@@ -10,7 +10,7 @@ class UltimateCMS_Plugins_Language extends Zend_Controller_Plugin_Abstract
         if (isset($languageId) && $languageId != ""  && $languageId != NULL) {
             $language = $modelLanguage->find($languageId)->current();
         } else {
-            $language = $modelLanguage->getFirst();
+            $language = $modelLanguage->getFirst(1);
         }
 
         Zend_Registry::set('language', $language);

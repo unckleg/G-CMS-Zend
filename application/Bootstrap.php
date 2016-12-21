@@ -102,8 +102,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $viewRenderer->setView($this->view);
         $viewRenderer->view->addHelperPath(APPLICATION_PATH . '/../library/UltimateCMS/Helpers/View', '')
-                            ->addHelperPath(APPLICATION_PATH . '/../library/UltimateCMS/Helpers/Action', '')
-                            ->addHelperPath(APPLICATION_PATH . '/../library/UltimateCMS/Helpers/View/Modules', '');
+                           ->addHelperPath(APPLICATION_PATH . '/../library/UltimateCMS/Helpers/Action', '')
+                           ->addHelperPath(APPLICATION_PATH . '/../library/UltimateCMS/Helpers/View/Modules', '');
 
         return $this->view;
     }

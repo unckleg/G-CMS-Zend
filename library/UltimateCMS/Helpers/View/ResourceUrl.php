@@ -18,7 +18,7 @@ class ResourceUrl extends Zend_View_Helper_Abstract
         $this->_actionUrl = $this->view->url(array(
             'controller' => $ctrl,
             'action' =>  $action,
-        ),'default', true);
+          ),'default', true);
 
         return $this->_actionUrl;
     }
@@ -31,7 +31,7 @@ class ResourceUrl extends Zend_View_Helper_Abstract
         $this->_indexUrl = $this->view->url(array(
             'controller' => $ctrl,
             'action' =>  $index,
-        ),'default', true);
+          ),'default', true);
 
         return $this->_indexUrl;
     }
